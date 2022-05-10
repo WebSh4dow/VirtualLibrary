@@ -6,6 +6,10 @@
 package VEW;
 import MODEL.ModelAluno;
 import CONTROLLER.ControllerAluno;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Jarmison
@@ -14,6 +18,7 @@ public class ViewAluno extends javax.swing.JFrame {
 
     ModelAluno modelAluno= new ModelAluno();
     ControllerAluno controllerAluno = new ControllerAluno();
+    List <ModelAluno> listaAluno = new ArrayList <>();
     
     
     
@@ -23,7 +28,11 @@ public class ViewAluno extends javax.swing.JFrame {
      * Creates new form ViewUsuario
      */
     public ViewAluno() {
+      
         initComponents();
+         CarregarAlunos();
+        setLocationRelativeTo(null);
+       
     }
 
     /**
@@ -54,7 +63,7 @@ public class ViewAluno extends javax.swing.JFrame {
         JbExcluirAluno = new javax.swing.JButton();
         JbPesquisarAluno = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtCadastroUser = new javax.swing.JTable();
+        JtableAluno = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jtfIDAlunos = new javax.swing.JTextField();
 
@@ -117,6 +126,11 @@ public class ViewAluno extends javax.swing.JFrame {
 
         JbAlterarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/update.png"))); // NOI18N
         JbAlterarAluno.setText("ALTERAR");
+        JbAlterarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbAlterarAlunoActionPerformed(evt);
+            }
+        });
 
         JbExcluirAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/remove-user.png"))); // NOI18N
         JbExcluirAluno.setText("EXCLUIR");
@@ -124,7 +138,7 @@ public class ViewAluno extends javax.swing.JFrame {
         JbPesquisarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/pesquisar-usuario.png"))); // NOI18N
         JbPesquisarAluno.setText("PESQUISAR");
 
-        JtCadastroUser.setModel(new javax.swing.table.DefaultTableModel(
+        JtableAluno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -132,7 +146,7 @@ public class ViewAluno extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "NOME", "ENDEREÇO", "CIDADE", "EMAIL"
+                "ID", "NOME", "EMAIL", "CIDADE", "ENDEREÇO"
             }
         ) {
             Class[] types = new Class [] {
@@ -150,7 +164,7 @@ public class ViewAluno extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(JtCadastroUser);
+        jScrollPane1.setViewportView(JtableAluno);
 
         jLabel7.setText("ID");
 
@@ -303,10 +317,55 @@ public class ViewAluno extends javax.swing.JFrame {
         modelAluno.setEmail_aluno(JtfEmail.getText());
         
         
-        controllerAluno.SalvarAlunoController(modelAluno);
+       if(controllerAluno.SalvarAlunoController(modelAluno)) {
+           JOptionPane.showMessageDialog(this,"ALUNO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+           LimparCampos();
+           CarregarAlunos();
+       }
+       
+       else {
+       JOptionPane.showMessageDialog(this, "ERRO AO CADASTRAR O ALUNO","!",JOptionPane.ERROR_MESSAGE);
+       
+       }
         
     }//GEN-LAST:event_JbCadastrarAlunoActionPerformed
-
+// LIMPAR OS CAMPOS DO ALUNO
+    
+    private void LimparCampos () {
+   JtfCidade.setText("");
+   JtfEmail.setText("");
+   JtfEndereço.setText("");
+   JtfNome.setText("");
+   JtfPesquisar.setText("");
+   jtfIDAlunos.setText("");
+    
+    }
+    
+    private void CarregarAlunos(){
+    listaAluno = controllerAluno.getlistaAlunosController();
+    DefaultTableModel modelo = (DefaultTableModel) JtableAluno.getModel();
+    modelo.setNumRows(0);
+    
+        for (int i = 0; i < listaAluno.size(); i++) {
+            modelo.addRow(new Object[]{
+            listaAluno.get(i).getId_aluno(),
+            listaAluno.get(i).getNome_aluno(),
+            listaAluno.get(i).getEmail_aluno(),
+            listaAluno.get(i).getCidade_aluno(),
+            listaAluno.get(i).getEndereço_aluno()
+            
+            
+            });
+            
+        }
+    
+    
+    
+    }
+    
+    
+    
+    
     private void JtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtfEmailActionPerformed
@@ -314,6 +373,10 @@ public class ViewAluno extends javax.swing.JFrame {
     private void jtfIDAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIDAlunosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfIDAlunosActionPerformed
+
+    private void JbAlterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JbAlterarAlunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,7 +419,7 @@ public class ViewAluno extends javax.swing.JFrame {
     private javax.swing.JButton JbCadastrarAluno;
     private javax.swing.JButton JbExcluirAluno;
     private javax.swing.JButton JbPesquisarAluno;
-    private javax.swing.JTable JtCadastroUser;
+    private javax.swing.JTable JtableAluno;
     private javax.swing.JTextField JtfCidade;
     private javax.swing.JTextField JtfEmail;
     private javax.swing.JTextField JtfEndereço;

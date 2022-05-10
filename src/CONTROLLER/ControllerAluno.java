@@ -6,6 +6,7 @@
 package CONTROLLER;
 import DAO.DAOAluno;
 import MODEL.ModelAluno;
+import java.util.List;
 
 /**
  *
@@ -20,6 +21,10 @@ public class ControllerAluno {
         
         
         
+    }
+
+    public List<ModelAluno> getlistaAlunosController() {
+        return this.dAOAluno.getListaAluno();
     }
   
 }

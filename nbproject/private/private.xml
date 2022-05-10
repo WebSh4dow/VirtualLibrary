@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/DAO/DAOUsuario.java</file>
             <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewLogin.java</file>
-            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewUsuario.java</file>
             <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewAluno.java</file>
             <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/DAO/DAOAluno.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/CONTROLLER/ControllerAluno.java</file>
         </group>
     </open-files>
 </project-private>

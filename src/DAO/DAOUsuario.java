@@ -1,6 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ *========================== ======================== =======================
+ * ==================@author Jarmison   MEU    GitHub: FireXtz ============================
+ * ==========================================================================
  */
 package DAO;
 import DAO.ConexaoSQLite;
@@ -13,18 +14,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import MODEL.ModelUsuario;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
-/**
- *========================== ======================== =======================
- * ==================@author Jarmison   MEU    GitHub: FireXtz ============================
- * ==========================================================================
- */
+
 public class DAOUsuario extends ConexaoSQLite{
     //  conexao para salvar o usuario (USUARIO DO LOGIN ADM)
     public boolean SalvarUsuarioDao (ModelUsuario pmodelUsuario){
         
         conectar();
-        String sql = "INSERT INTO tbl_Usuario(pk_id_usuario,nome_usuario,senha_usuario) VALUES (?,?,?) ";
+        String sql = "INSERT INTO tbl_Usuario(nome_usuario,senha_usuario) VALUES (?,?) ";
         
         PreparedStatement preparedStatement = criarPreparedStatement(sql,Statement.RETURN_GENERATED_KEYS);
         
@@ -33,7 +32,10 @@ public class DAOUsuario extends ConexaoSQLite{
             
             preparedStatement.setString(1, pmodelUsuario.getNome_usuario());
             preparedStatement.setString(2, pmodelUsuario.getSenha_usuario());
-            preparedStatement.setInt(3, pmodelUsuario.getId_usuario());
+           
+           
+            preparedStatement.executeUpdate();
+            
             
             
           } catch (SQLException ex) {
@@ -44,6 +46,48 @@ public class DAOUsuario extends ConexaoSQLite{
        return true;
     
     }
+   
+    //Listar os usuarios do banco de dados em uma lista publica 
+    
+
+
+    public List<ModelUsuario> getListaUsuarioDAO() {
+       List <ModelUsuario> listaUsuario = new ArrayList<>();
+       ModelUsuario modelUsuario = new ModelUsuario();
+              
+         
+              
+              ResultSet resultSet = null;
+              PreparedStatement preparedStatement = null;
+              
+          String sql = "SELECT  pk_id_usuario,nome_usuario,senha_usuario FROM tbl_Usuario";
+         
+          System.out.println(sql);
+             
+             try {
+                     this.conectar();
+                     
+          preparedStatement = criarPreparedStatement(sql);
+          resultSet = preparedStatement.executeQuery();
+                 while (resultSet.next()) {
+                    modelUsuario = new ModelUsuario();
+                    modelUsuario.setId_usuario(resultSet.getInt(1));
+                    modelUsuario.setNome_usuario(resultSet.getString(2));
+                    modelUsuario.setSenha_usuario(resultSet.getString(3));
+                    listaUsuario.add(modelUsuario);
+                     
+                 }
+      } catch (Exception e) {
+                 System.err.println(e);
+      }
+             finally{
+                this.desconectar();    
+             }
+         
+        return listaUsuario;
+        
+    }
+    
     
     
     

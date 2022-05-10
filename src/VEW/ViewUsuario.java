@@ -3,14 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package VEW;
-
+import MODEL.ModelUsuario;
+import CONTROLLER.ControllerUsuario;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author sansepiol
  */
 public class ViewUsuario extends javax.swing.JFrame {
- 
     
+ // Setar os novos ModelUsuarios
+    
+    ModelUsuario modelUsuario = new ModelUsuario ();
+    ControllerUsuario controllerUsuario = new ControllerUsuario();
+   
+   List <ModelUsuario> listaUsuario = new ArrayList<>();
     
     
     
@@ -23,7 +33,12 @@ public class ViewUsuario extends javax.swing.JFrame {
      * Creates new form ViewUsuario
      */
     public ViewUsuario() {
+        // PARA APARECER A View NO CENTRO DA TELA
+          
         initComponents();
+        carregarUsuarios();
+      
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,17 +56,17 @@ public class ViewUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jtfIdUsuario = new javax.swing.JTextField();
+        jtfNomeUsuario = new javax.swing.JTextField();
+        jPSenhaUsuario = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jtfPesquisar = new javax.swing.JTextField();
         jbCadastrarUser = new javax.swing.JButton();
         jbAlterarUser = new javax.swing.JButton();
         jb_ExcluirUser = new javax.swing.JButton();
         jbPesquisarUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableUsuario = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,9 +91,10 @@ public class ViewUsuario extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/autoria.png"))); // NOI18N
         jLabel4.setText("ID");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtfIdUsuario.setEditable(false);
+        jtfIdUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtfIdUsuarioActionPerformed(evt);
             }
         });
 
@@ -96,6 +112,11 @@ public class ViewUsuario extends javax.swing.JFrame {
         jbAlterarUser.setText("ALTERAR");
 
         jb_ExcluirUser.setText("EXCLUIR");
+        jb_ExcluirUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_ExcluirUserActionPerformed(evt);
+            }
+        });
 
         jbPesquisarUser.setText("PESQUISAR");
 
@@ -105,9 +126,9 @@ public class ViewUsuario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jTextField3)
+                    .addComponent(jtfNomeUsuario)
+                    .addComponent(jPSenhaUsuario)
+                    .addComponent(jtfPesquisar)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -115,20 +136,20 @@ public class ViewUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addGap(67, 67, 67)
                                 .addComponent(jLabel1))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(10, 10, 10)
                                 .addComponent(jbCadastrarUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbPesquisarUser)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbAlterarUser)
-                                .addGap(12, 12, 12)
                                 .addComponent(jb_ExcluirUser)
-                                .addGap(26, 26, 26)
-                                .addComponent(jbPesquisarUser)))
-                        .addGap(0, 63, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbAlterarUser)))
+                        .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -141,29 +162,29 @@ public class ViewUsuario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCadastrarUser)
-                    .addComponent(jbAlterarUser)
+                    .addComponent(jbPesquisarUser)
                     .addComponent(jb_ExcluirUser)
-                    .addComponent(jbPesquisarUser))
+                    .addComponent(jbAlterarUser))
                 .addGap(21, 21, 21))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -189,15 +210,16 @@ public class ViewUsuario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableUsuario);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1)
                 .addGap(6, 6, 6))
         );
@@ -221,17 +243,70 @@ public class ViewUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtfIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIdUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtfIdUsuarioActionPerformed
 
     private void jbCadastrarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarUserActionPerformed
-        // TODO add your handling code here:
+        // setando o ModelUsuario
+        
+        modelUsuario = new ModelUsuario();
+        modelUsuario.setNome_usuario(jtfNomeUsuario.getText());
+        modelUsuario.setSenha_usuario(String.valueOf(jPSenhaUsuario.getPassword()));
+        
+        if ( controllerUsuario.SalvarUsuarioController(modelUsuario)) {
+              JOptionPane.showMessageDialog(this, "USUÁRIO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+              LimparCampos();
+              carregarUsuarios();
+        }
+        
+        else {
+         JOptionPane.showMessageDialog(this, "USUÁRIO NÃO FOI CADASTRADO!","ERRO COMPLETE TODOS OS CAMPOS EM BRANCO",JOptionPane.ERROR_MESSAGE);
+        }
+      
         
         
+     
         
     }//GEN-LAST:event_jbCadastrarUserActionPerformed
 
+    private void jb_ExcluirUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ExcluirUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_ExcluirUserActionPerformed
+       //METODO PRIVADO  PARA LIMPAR O FORMULARIO
+       private void LimparCampos (){
+        jtfIdUsuario.setText("");
+        jtfNomeUsuario.setText("");
+        jPSenhaUsuario.setText("");
+        
+        
+        }
+       
+       //metodo privado para carregar a lista de usuarios
+       
+     private void carregarUsuarios(){
+     listaUsuario = controllerUsuario.getListaUsuariosController();
+     DefaultTableModel modelo = (DefaultTableModel) jTableUsuario.getModel();
+     modelo.setNumRows(0);
+     
+     
+         for (int i = 0; i < listaUsuario.size(); i++) {
+             modelo.addRow(new Object[]{
+             listaUsuario.get(i).getId_usuario(),
+             listaUsuario.get(i).getNome_usuario(),
+             listaUsuario.get(i).getSenha_usuario() //Modificar depois para não listar a senha!
+             
+             });
+         }
+     
+     
+     }
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -273,17 +348,17 @@ public class ViewUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPasswordField jPSenhaUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable jTableUsuario;
     private javax.swing.JButton jbAlterarUser;
     private javax.swing.JButton jbCadastrarUser;
     private javax.swing.JButton jbPesquisarUser;
     private javax.swing.JButton jb_ExcluirUser;
+    private javax.swing.JTextField jtfIdUsuario;
+    private javax.swing.JTextField jtfNomeUsuario;
+    private javax.swing.JTextField jtfPesquisar;
     // End of variables declaration//GEN-END:variables
 }

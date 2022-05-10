@@ -24,7 +24,7 @@ public class DAOAluno extends ConexaoSQLite {
    
     //conexao para salvar o aluno
     
-    public boolean SalvarAlunoDAO(ModelAluno pModelAluno){
+    public boolean SalvarAlunoDAO(ModelAluno pModelAluno) {
         conectar();
         String sql ="INSERT INTO tbl_Aluno (nome_aluno,cidade_aluno,email_aluno,endereço_aluno,fk_id_aluno) VALUES (?,?,?,?,?)";
         
@@ -48,8 +48,54 @@ public class DAOAluno extends ConexaoSQLite {
         
     
     }
+   
+    //Conexão Exibir Lista
+    
+    public List <ModelAluno> getListaAluno () {
+   List <ModelAluno> listaAluno = new ArrayList<ModelAluno>() ;
+   ModelAluno modelAluno = new ModelAluno();
+   
+    ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
+    
+    String sql = "SELECT pk_id_aluno,nome_aluno,cidade_aluno,email_aluno,endereço_aluno FROM tbl_Aluno";
+   System.out.println(sql);
+   
+        try {
+            this.conectar();
+          preparedStatement = criarPreparedStatement(sql);
+          resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()) {
+                modelAluno = new ModelAluno();
+                modelAluno.setId_aluno(resultSet.getInt(1));
+                modelAluno.setNome_aluno(resultSet.getString(2));
+                modelAluno.setCidade_aluno(resultSet.getString(3));
+                modelAluno.setEmail_aluno(resultSet.getString(4));
+                modelAluno.setEndereço_aluno(resultSet.getString(5));
+                listaAluno.add(modelAluno);
+                
+               
+                
+                
+            }
+            
+            
+            
+        } catch (Exception e) {
+             System.err.println(e);
+        }
+        
+        finally{
+        desconectar();
+        }
+ 
+        
     
     
     
+    
+    return listaAluno;
+    }  
     
 }
