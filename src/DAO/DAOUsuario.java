@@ -87,8 +87,116 @@ public class DAOUsuario extends ConexaoSQLite{
         return listaUsuario;
         
     }
+    // excluir o usuario 
     
     
+    public boolean deletarUsuarioDAO(int pCodigo) {
+        this.conectar();
+      String  sql = "DELETE FROM tbl_Usuario WHERE pk_id_usuario= '"+pCodigo+"'";
+      PreparedStatement preparedStatement = this.criarPreparedStatement(sql);
+        System.out.println(sql);
+        try {
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+        // caso tenha excessao no meu PreparedStatement usar um finally
+        
+        finally {
+        if (preparedStatement !=null) {
+            
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                 Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+        }
+        
+        
+        
+        }
+        
+        
+        
+    this.desconectar();
+    return true;
+    
+    }
+   
+    public ModelUsuario getUsuarioDAO(int pCodigoUsuario){
+        ModelUsuario modelUsuario = new ModelUsuario();
+    conectar();
+    ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
+    
+    String sql = "SELECT  pk_id_usuario,nome_usuario,senha_usuario FROM tbl_Usuario WHERE pk_id_usuario = '"+pCodigoUsuario+"'";
+    preparedStatement = criarPreparedStatement(sql);
+      System.out.println(sql);
+        try {
+            resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()){
+              modelUsuario = new ModelUsuario();
+              modelUsuario.setId_usuario(resultSet.getInt(1));
+              modelUsuario.setNome_usuario(resultSet.getString(2));
+              modelUsuario.setSenha_usuario(resultSet.getString(3));
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+        }
+        
+       
+        
+     desconectar();   
+    return modelUsuario;
+    }
+    
+    public boolean atualizarUsuario(ModelUsuario  modelUsuario){
+        this.conectar();
+      
+    String sql = "UPDATE tbl_Usuario SET nome_usuario =?, senha_usuario=?,pk_id_usuario=? WHERE pk_id_usuario=  '"+modelUsuario.getId_usuario()+"'";
+   PreparedStatement preparedStatement = this.criarPreparedStatement(sql);
+   System.out.println(sql);
+   
+        try {
+            preparedStatement.setString(1, modelUsuario.getNome_usuario());
+            preparedStatement.setString(2, modelUsuario.getSenha_usuario());
+            preparedStatement.setInt(3, modelUsuario.getId_usuario());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+        finally {
+        if (preparedStatement !=null) {
+            
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                 Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+        }
+        
+        
+        
+        }
+    
+    this.desconectar();
+    return true;
+    
+    }
     
     
 }

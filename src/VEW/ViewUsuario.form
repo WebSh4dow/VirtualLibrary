@@ -193,9 +193,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfIdUsuario">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfIdUsuarioActionPerformed"/>
               </Events>
@@ -216,6 +213,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfPesquisar">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfPesquisarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbCadastrarUser">
               <Properties>
@@ -229,6 +229,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="ALTERAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAlterarUserActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jb_ExcluirUser">
               <Properties>
@@ -242,6 +245,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="PESQUISAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbPesquisarUserActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -26,5 +26,9 @@ public class ControllerAluno {
     public List<ModelAluno> getlistaAlunosController() {
         return this.dAOAluno.getListaAluno();
     }
+
+    public boolean  deletarAlunoController(int codigo) {
+        return this.dAOAluno.deletarAlunoDAO(codigo);
+    }
   
 }

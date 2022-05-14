@@ -23,8 +23,26 @@ public class ControllerUsuario {
     }
        
     public List<ModelUsuario> getListaUsuariosController() {
-     
-       return this.dAoUsuario.getListaUsuarioDAO();
+    return this.dAoUsuario.getListaUsuarioDAO();
+    }
+
+    public boolean excluirUsuarioController(int codigo) {
+    return this.dAoUsuario.deletarUsuarioDAO(codigo);
+    }
+
+    public ModelUsuario alterarUsuarioController(int pCodigo) {
+    return  this.dAoUsuario.getUsuarioDAO(pCodigo);
+        
+        
+        
+        }
+
+    public boolean atualizarUsuarioController(ModelUsuario modelUsuario) {
+        return this.dAoUsuario.atualizarUsuario(modelUsuario);
+    }
+    
+    public ModelUsuario pesquisarUsuarioController(int pCodigo){
+    return this.dAoUsuario.getUsuarioDAO(pCodigo);
     }
     
 

@@ -20,7 +20,10 @@ public class ViewUsuario extends javax.swing.JFrame {
     ModelUsuario modelUsuario = new ModelUsuario ();
     ControllerUsuario controllerUsuario = new ControllerUsuario();
    
-   List <ModelUsuario> listaUsuario = new ArrayList<>();
+    List <ModelUsuario> listaUsuario = new ArrayList<>();
+    
+   String cadAlt="cad";
+   String pesqUsu="pesq";
     
     
     
@@ -91,7 +94,6 @@ public class ViewUsuario extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/autoria.png"))); // NOI18N
         jLabel4.setText("ID");
 
-        jtfIdUsuario.setEditable(false);
         jtfIdUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfIdUsuarioActionPerformed(evt);
@@ -102,6 +104,12 @@ public class ViewUsuario extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/pesquisar-usuario.png"))); // NOI18N
         jLabel5.setText("pesquisar: ");
 
+        jtfPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfPesquisarActionPerformed(evt);
+            }
+        });
+
         jbCadastrarUser.setText("CADASTRAR");
         jbCadastrarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +118,11 @@ public class ViewUsuario extends javax.swing.JFrame {
         });
 
         jbAlterarUser.setText("ALTERAR");
+        jbAlterarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarUserActionPerformed(evt);
+            }
+        });
 
         jb_ExcluirUser.setText("EXCLUIR");
         jb_ExcluirUser.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +132,11 @@ public class ViewUsuario extends javax.swing.JFrame {
         });
 
         jbPesquisarUser.setText("PESQUISAR");
+        jbPesquisarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisarUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -251,18 +269,45 @@ public class ViewUsuario extends javax.swing.JFrame {
         // setando o ModelUsuario
         
         modelUsuario = new ModelUsuario();
+        
         modelUsuario.setNome_usuario(jtfNomeUsuario.getText());
         modelUsuario.setSenha_usuario(String.valueOf(jPSenhaUsuario.getPassword()));
         
-        if ( controllerUsuario.SalvarUsuarioController(modelUsuario)) {
-              JOptionPane.showMessageDialog(this, "USUÁRIO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
-              LimparCampos();
-              carregarUsuarios();
+        if (cadAlt.equals("cad")) {
+            
+            
+        if (controllerUsuario.SalvarUsuarioController(modelUsuario)){
+            
+        JOptionPane.showMessageDialog(this,"ALUNO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+           LimparCampos();
+           carregarUsuarios();
+       }
+      
+       else {
+        JOptionPane.showMessageDialog(this, "ERRO AO CADASTRAR O usurio","!",JOptionPane.ERROR_MESSAGE);
+       }
+            
+            
+            
+        } else{
+            modelUsuario.setId_usuario(Integer.parseInt(jtfIdUsuario.getText()));
+             if (controllerUsuario.atualizarUsuarioController(modelUsuario)){
+                  
+                 
+               
+                 
+        JOptionPane.showMessageDialog(this,"USUÁRIO ALTERADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+           
+           LimparCampos();
+           carregarUsuarios();
+       }
+      
+       else {
+        JOptionPane.showMessageDialog(this, "ERRO AO ALTERAR O ALUNO","!",JOptionPane.ERROR_MESSAGE);
+       }
+        
         }
         
-        else {
-         JOptionPane.showMessageDialog(this, "USUÁRIO NÃO FOI CADASTRADO!","ERRO COMPLETE TODOS OS CAMPOS EM BRANCO",JOptionPane.ERROR_MESSAGE);
-        }
       
         
         
@@ -271,20 +316,97 @@ public class ViewUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCadastrarUserActionPerformed
 
     private void jb_ExcluirUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ExcluirUserActionPerformed
-        // TODO add your handling code here:
+        // Setando os objetos para excluir os usuarios objeto linha da coluna
+        
+        int linha = jTableUsuario.getSelectedRow(); 
+        
+        if (linha < 0){
+        JOptionPane.showMessageDialog(this, "USUÁRIO NÃO SELECIONADO!");
+        
+        }
+        
+        else {
+          int codigo = (int) jTableUsuario.getValueAt(linha, 0);
+          controllerUsuario.excluirUsuarioController(codigo);
+          carregarUsuarios();
+          LimparCampos();
+          JOptionPane.showMessageDialog(this, "USUÁRIO EXCLUIDO COM EXITO!");
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jb_ExcluirUserActionPerformed
+
+    private void jbPesquisarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarUserActionPerformed
+      
+      
+     
+        
+        
+        
+        
+    }//GEN-LAST:event_jbPesquisarUserActionPerformed
+
+    private void jbAlterarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarUserActionPerformed
+        //modelUsuario  = new ModelUsuario();
+        cadAlt = "alt";
+     
+       
+      int linha = jTableUsuario.getSelectedRow(); 
+      
+        
+        if (linha < 0){
+        JOptionPane.showMessageDialog(this, "USUÁRIO NÃO SELECIONADO!");
+        
+        }
+        
+        else {
+           
+          int codigo = (int) jTableUsuario.getValueAt(linha, 0);
+          controllerUsuario.alterarUsuarioController(codigo);
+          jtfIdUsuario.setText(String.valueOf(modelUsuario.getId_usuario()));
+          jtfNomeUsuario.setText(modelUsuario.getNome_usuario());
+          jPSenhaUsuario.setText(modelUsuario.getSenha_usuario());
+          
+        }
+      
+      
+      
+        
+        
+        
+        
+    }//GEN-LAST:event_jbAlterarUserActionPerformed
+
+    private void jtfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesquisarActionPerformed
+        
+    }//GEN-LAST:event_jtfPesquisarActionPerformed
        //METODO PRIVADO  PARA LIMPAR O FORMULARIO
        private void LimparCampos (){
         jtfIdUsuario.setText("");
         jtfNomeUsuario.setText("");
         jPSenhaUsuario.setText("");
+       cadAlt = "cad";
         
         
         }
        
+       private void PesquisarUsuario(){
+        
+      
+        
+     }
+       
+       
+       
+     
+       
        //metodo privado para carregar a lista de usuarios
        
      private void carregarUsuarios(){
+           
      listaUsuario = controllerUsuario.getListaUsuariosController();
      DefaultTableModel modelo = (DefaultTableModel) jTableUsuario.getModel();
      modelo.setNumRows(0);

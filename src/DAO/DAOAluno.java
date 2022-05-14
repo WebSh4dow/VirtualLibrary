@@ -74,13 +74,7 @@ public class DAOAluno extends ConexaoSQLite {
                 modelAluno.setEmail_aluno(resultSet.getString(4));
                 modelAluno.setEndereço_aluno(resultSet.getString(5));
                 listaAluno.add(modelAluno);
-                
-               
-                
-                
-            }
-            
-            
+}
             
         } catch (Exception e) {
              System.err.println(e);
@@ -89,13 +83,43 @@ public class DAOAluno extends ConexaoSQLite {
         finally{
         desconectar();
         }
- 
+ return listaAluno;
+    }
+    
+    // excluir o Aluno
+    
+    public boolean deletarAlunoDAO(int pCodigo){
+        this.conectar();
+        PreparedStatement preparedStatement;
+        String sql = "DELETE FROM tbl_Aluno WHERE pk_id_aluno= '"+pCodigo+"'";
+        preparedStatement = this.criarPreparedStatement(sql);
         
+        try {
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+           Logger.getLogger(DAOAluno.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    finally {
+         if(preparedStatement != null){
+             try {
+                 preparedStatement.close();
+                 
+             } catch (SQLException ex) {
+                 ex.printStackTrace();
+                 Logger.getLogger(DAOAluno.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+        
+        }
+    this.desconectar();
+    return true;
+    
+    }
     
     
-    
-    
-    return listaAluno;
     }  
     
 }

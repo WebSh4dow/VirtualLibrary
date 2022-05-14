@@ -134,6 +134,11 @@ public class ViewAluno extends javax.swing.JFrame {
 
         JbExcluirAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/remove-user.png"))); // NOI18N
         JbExcluirAluno.setText("EXCLUIR");
+        JbExcluirAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbExcluirAlunoActionPerformed(evt);
+            }
+        });
 
         JbPesquisarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/pesquisar-usuario.png"))); // NOI18N
         JbPesquisarAluno.setText("PESQUISAR");
@@ -377,6 +382,21 @@ public class ViewAluno extends javax.swing.JFrame {
     private void JbAlterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarAlunoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JbAlterarAlunoActionPerformed
+
+    private void JbExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbExcluirAlunoActionPerformed
+      int linha = JtableAluno.getSelectedRow();
+      if (linha < 0 ) {
+      JOptionPane.showMessageDialog(this, "SELECIONE ALGUM ALUNO!");
+      }
+      else {
+      int codigo = (int) JtableAluno.getValueAt(linha, 0);
+      controllerAluno.deletarAlunoController(codigo);// excluir
+      
+      CarregarAlunos();//atualizar
+      LimparCampos();// e limpa o formulario
+      JOptionPane.showMessageDialog(this, "ALUNO EXCLUIDO COM EXITO!");
+      }
+    }//GEN-LAST:event_JbExcluirAlunoActionPerformed
 
     /**
      * @param args the command line arguments
