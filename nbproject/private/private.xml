@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewEmprestimo.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/DAO/DAOUsuario.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewLogin.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewEditora.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/CONTROLLER/ControllerUsuario.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewMenu.java</file>
             <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewUsuario.java</file>
-            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewLivros.java</file>
-            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/VEW/ViewAluno.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/CONTROLLER/ControllerEditora.java</file>
+            <file>file:/home/sansepiol/NetBeansProjects/Locadora%20WDA/src/DAO/DAOEditora.java</file>
         </group>
     </open-files>
 </project-private>
