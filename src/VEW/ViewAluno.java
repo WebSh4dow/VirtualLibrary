@@ -19,6 +19,7 @@ public class ViewAluno extends javax.swing.JFrame {
     ModelAluno modelAluno= new ModelAluno();
     ControllerAluno controllerAluno = new ControllerAluno();
     List <ModelAluno> listaAluno = new ArrayList <>();
+    String cadAlt="cad";
     
     
     
@@ -56,18 +57,15 @@ public class ViewAluno extends javax.swing.JFrame {
         JtfEndereço = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         JtfEmail = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        JtfPesquisar = new javax.swing.JTextField();
         JbCadastrarAluno = new javax.swing.JButton();
         JbAlterarAluno = new javax.swing.JButton();
         JbExcluirAluno = new javax.swing.JButton();
-        JbPesquisarAluno = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtableAluno = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jtfIDAlunos = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(58, 59, 182));
 
@@ -92,6 +90,12 @@ public class ViewAluno extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/cidade.png"))); // NOI18N
         jLabel3.setText("Cidade:");
 
+        JtfCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfCidadeActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/mapa-da-cidade.png"))); // NOI18N
         jLabel4.setText("Endereço:");
@@ -111,10 +115,6 @@ public class ViewAluno extends javax.swing.JFrame {
                 JtfEmailActionPerformed(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/pesquisar-usuario.png"))); // NOI18N
-        jLabel6.setText("Pesquisar Alunos:");
 
         JbCadastrarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/add-user.png"))); // NOI18N
         JbCadastrarAluno.setText("CADASTRAR");
@@ -139,9 +139,6 @@ public class ViewAluno extends javax.swing.JFrame {
                 JbExcluirAlunoActionPerformed(evt);
             }
         });
-
-        JbPesquisarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/pesquisar-usuario.png"))); // NOI18N
-        JbPesquisarAluno.setText("PESQUISAR");
 
         JtableAluno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,7 +170,6 @@ public class ViewAluno extends javax.swing.JFrame {
 
         jLabel7.setText("ID");
 
-        jtfIDAlunos.setEditable(false);
         jtfIDAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfIDAlunosActionPerformed(evt);
@@ -187,33 +183,33 @@ public class ViewAluno extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JtfPesquisar)
-                                .addComponent(JtfEmail, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JbAlterarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbPesquisarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JbExcluirAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(3, 3, 3)
-                                    .addComponent(jtfIDAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(JtfEndereço, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-                            .addComponent(JtfCidade))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JtfEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(JtfEndereço, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(JtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel7)
+                                .addGap(3, 3, 3)
+                                .addComponent(jtfIDAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(92, 92, 92))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JbCadastrarAluno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JbExcluirAluno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JbAlterarAluno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(4, 4, 4)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -226,39 +222,37 @@ public class ViewAluno extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jLabel7))
                     .addComponent(jtfIDAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(JbAlterarAluno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(JtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel4))
-                    .addComponent(JbExcluirAluno))
+                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(JbAlterarAluno)
+                        .addGap(8, 8, 8)))
+                .addComponent(jLabel3)
                 .addGap(14, 14, 14)
+                .addComponent(JtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(JtfEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addComponent(JbCadastrarAluno, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(JtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JbPesquisarAluno, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(89, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(JbExcluirAluno)
+                        .addGap(35, 35, 35)))
+                .addComponent(JtfEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(JbCadastrarAluno))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -315,23 +309,48 @@ public class ViewAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_JtfEndereçoActionPerformed
 
     private void JbCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCadastrarAlunoActionPerformed
-        modelAluno = new ModelAluno();
+     modelAluno = new ModelAluno();
         modelAluno.setNome_aluno(JtfNome.getText());
         modelAluno.setCidade_aluno(JtfCidade.getText());
         modelAluno.setEndereço_aluno(JtfEndereço.getText());
-        modelAluno.setEmail_aluno(JtfEmail.getText());
+        modelAluno.setEmail_aluno(JtfEmail.getText()); 
+
+
         
-        
-       if(controllerAluno.SalvarAlunoController(modelAluno)) {
-           JOptionPane.showMessageDialog(this,"ALUNO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+        if (cadAlt.equals("cad")) {
+            
+            
+        if (controllerAluno.SalvarAlunoController(modelAluno)){
+            
+        JOptionPane.showMessageDialog(this,"O   ALUNO FOI ALTERADO SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
            LimparCampos();
            CarregarAlunos();
        }
-       
+      
        else {
-       JOptionPane.showMessageDialog(this, "ERRO AO CADASTRAR O ALUNO","!",JOptionPane.ERROR_MESSAGE);
-       
+        JOptionPane.showMessageDialog(this, "ERRO AO ALTERAR O ALUNO","!",JOptionPane.ERROR_MESSAGE);
        }
+            
+            
+            
+        } else{
+            modelAluno.setId_aluno(Integer.parseInt(jtfIDAlunos.getText()));
+             if (controllerAluno.atualizarAlunoController(modelAluno)){
+                  
+                 
+               
+                 
+        JOptionPane.showMessageDialog(this,"ALUNO ALTERADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+           
+           LimparCampos();
+           CarregarAlunos();
+       }
+      
+       else {
+        JOptionPane.showMessageDialog(this, "ERRO AO ALTERAR O ALUNO","!",JOptionPane.ERROR_MESSAGE);
+       }
+        
+        }
         
     }//GEN-LAST:event_JbCadastrarAlunoActionPerformed
 // LIMPAR OS CAMPOS DO ALUNO
@@ -341,8 +360,7 @@ public class ViewAluno extends javax.swing.JFrame {
    JtfEmail.setText("");
    JtfEndereço.setText("");
    JtfNome.setText("");
-   JtfPesquisar.setText("");
-   jtfIDAlunos.setText("");
+  jtfIDAlunos.setText("");
     
     }
     
@@ -380,7 +398,33 @@ public class ViewAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfIDAlunosActionPerformed
 
     private void JbAlterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarAlunoActionPerformed
-        // TODO add your handling code here:
+        modelAluno  = new ModelAluno();
+        cadAlt = "alt";
+         
+         
+        
+         int linha = JtableAluno.getSelectedRow(); 
+      
+        
+        if (linha < 0){
+        JOptionPane.showMessageDialog(this, "LIVRO NÃO SELECIONADO!");
+        
+        }
+        
+        else {
+           
+          int codigo = (int) JtableAluno.getValueAt(linha, 0);
+          
+          controllerAluno.alterarAlunoController(codigo);
+          jtfIDAlunos.setText(String.valueOf(modelAluno.getId_aluno()));
+          JtfNome.setText(modelAluno.getNome_aluno());
+          JtfCidade.setText(modelAluno.getCidade_aluno());
+          JtfEndereço.setText(modelAluno.getCidade_aluno());
+          JtfEmail.setText(modelAluno.getEmail_aluno());
+          
+          
+          
+        }
     }//GEN-LAST:event_JbAlterarAlunoActionPerformed
 
     private void JbExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbExcluirAlunoActionPerformed
@@ -397,6 +441,10 @@ public class ViewAluno extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "ALUNO EXCLUIDO COM EXITO!");
       }
     }//GEN-LAST:event_JbExcluirAlunoActionPerformed
+
+    private void JtfCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtfCidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,19 +486,16 @@ public class ViewAluno extends javax.swing.JFrame {
     private javax.swing.JButton JbAlterarAluno;
     private javax.swing.JButton JbCadastrarAluno;
     private javax.swing.JButton JbExcluirAluno;
-    private javax.swing.JButton JbPesquisarAluno;
     private javax.swing.JTable JtableAluno;
     private javax.swing.JTextField JtfCidade;
     private javax.swing.JTextField JtfEmail;
     private javax.swing.JTextField JtfEndereço;
     private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

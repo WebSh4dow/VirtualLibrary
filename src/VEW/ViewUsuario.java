@@ -57,26 +57,23 @@ public class ViewUsuario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtfIdUsuario = new javax.swing.JTextField();
         jtfNomeUsuario = new javax.swing.JTextField();
         jPSenhaUsuario = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
-        jtfPesquisar = new javax.swing.JTextField();
         jbCadastrarUser = new javax.swing.JButton();
         jbAlterarUser = new javax.swing.JButton();
         jb_ExcluirUser = new javax.swing.JButton();
-        jbPesquisarUser = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuario = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(78, 78, 78));
         jPanel1.setForeground(new java.awt.Color(136, 136, 136));
 
-        jPanel2.setBackground(new java.awt.Color(226, 226, 226));
+        jPanel2.setBackground(new java.awt.Color(79, 74, 74));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
@@ -85,10 +82,6 @@ public class ViewUsuario extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/login.png"))); // NOI18N
         jLabel2.setText("Nome:");
-
-        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/lock.png"))); // NOI18N
-        jLabel3.setText("Senha:");
 
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/autoria.png"))); // NOI18N
@@ -100,16 +93,7 @@ public class ViewUsuario extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(13, 13, 13));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/pesquisar-usuario.png"))); // NOI18N
-        jLabel5.setText("pesquisar: ");
-
-        jtfPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfPesquisarActionPerformed(evt);
-            }
-        });
-
+        jbCadastrarUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/add-user.png"))); // NOI18N
         jbCadastrarUser.setText("CADASTRAR");
         jbCadastrarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +101,7 @@ public class ViewUsuario extends javax.swing.JFrame {
             }
         });
 
+        jbAlterarUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/update.png"))); // NOI18N
         jbAlterarUser.setText("ALTERAR");
         jbAlterarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +109,7 @@ public class ViewUsuario extends javax.swing.JFrame {
             }
         });
 
+        jb_ExcluirUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/lixeira.png"))); // NOI18N
         jb_ExcluirUser.setText("EXCLUIR");
         jb_ExcluirUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,12 +117,9 @@ public class ViewUsuario extends javax.swing.JFrame {
             }
         });
 
-        jbPesquisarUser.setText("PESQUISAR");
-        jbPesquisarUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPesquisarUserActionPerformed(evt);
-            }
-        });
+        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UTIL/ICONS/lock.png"))); // NOI18N
+        jLabel3.setText("Senha:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -146,29 +129,28 @@ public class ViewUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfNomeUsuario)
                     .addComponent(jPSenhaUsuario)
-                    .addComponent(jtfPesquisar)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(67, 67, 67)
+                                .addGap(117, 117, 117)
                                 .addComponent(jLabel1))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jbCadastrarUser)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbPesquisarUser)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jb_ExcluirUser)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbAlterarUser)))
-                        .addGap(0, 22, Short.MAX_VALUE)))
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbCadastrarUser)
+                .addGap(41, 41, 41)
+                .addComponent(jb_ExcluirUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jbAlterarUser)
+                .addGap(45, 45, 45))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,30 +158,26 @@ public class ViewUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(34, 34, 34))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jtfIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtfIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCadastrarUser)
-                    .addComponent(jbPesquisarUser)
                     .addComponent(jb_ExcluirUser)
                     .addComponent(jbAlterarUser))
-                .addGap(21, 21, 21))
+                .addGap(43, 43, 43))
         );
 
         jTableUsuario.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,13 +216,13 @@ public class ViewUsuario extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,13 +256,13 @@ public class ViewUsuario extends javax.swing.JFrame {
             
         if (controllerUsuario.SalvarUsuarioController(modelUsuario)){
             
-        JOptionPane.showMessageDialog(this,"ALUNO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,"USUÁRIO CADASTRADO COM SUCESSO!","!",JOptionPane.INFORMATION_MESSAGE);
            LimparCampos();
            carregarUsuarios();
        }
       
        else {
-        JOptionPane.showMessageDialog(this, "ERRO AO CADASTRAR O usurio","!",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "ERRO AO CADASTRAR O USUÁRIO","!",JOptionPane.ERROR_MESSAGE);
        }
             
             
@@ -339,18 +317,8 @@ public class ViewUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jb_ExcluirUserActionPerformed
 
-    private void jbPesquisarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarUserActionPerformed
-      
-      
-     
-        
-        
-        
-        
-    }//GEN-LAST:event_jbPesquisarUserActionPerformed
-
     private void jbAlterarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarUserActionPerformed
-        //modelUsuario  = new ModelUsuario();
+        modelUsuario  = new ModelUsuario();
         cadAlt = "alt";
      
        
@@ -379,10 +347,6 @@ public class ViewUsuario extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jbAlterarUserActionPerformed
-
-    private void jtfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesquisarActionPerformed
-        
-    }//GEN-LAST:event_jtfPesquisarActionPerformed
        //METODO PRIVADO  PARA LIMPAR O FORMULARIO
        private void LimparCampos (){
         jtfIdUsuario.setText("");
@@ -393,11 +357,7 @@ public class ViewUsuario extends javax.swing.JFrame {
         
         }
        
-       private void PesquisarUsuario(){
-        
       
-        
-     }
        
        
        
@@ -423,6 +383,9 @@ public class ViewUsuario extends javax.swing.JFrame {
      
      
      }
+     
+     
+    
     
     
     
@@ -469,7 +432,6 @@ public class ViewUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPSenhaUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -477,10 +439,8 @@ public class ViewUsuario extends javax.swing.JFrame {
     private javax.swing.JTable jTableUsuario;
     private javax.swing.JButton jbAlterarUser;
     private javax.swing.JButton jbCadastrarUser;
-    private javax.swing.JButton jbPesquisarUser;
     private javax.swing.JButton jb_ExcluirUser;
     private javax.swing.JTextField jtfIdUsuario;
     private javax.swing.JTextField jtfNomeUsuario;
-    private javax.swing.JTextField jtfPesquisar;
     // End of variables declaration//GEN-END:variables
 }

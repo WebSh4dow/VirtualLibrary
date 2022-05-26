@@ -11,16 +11,18 @@ public class ModelLivro {
  private String nome_livro;
  private String nome_autor;
  private String nome_editora;
- private String lançamento;
+ private int lançamento;
+ 
  private int quantidade_livro;
  
- public ModelLivro(int id_livro,String nome_livro,String nome_autor,String nome_editora,String lançamento,int  quantidade_livro){
+ public ModelLivro(int id_livro,String nome_livro,String nome_autor,String nome_editora,int lançamento,int  quantidade_livro){
  this.id_livro =id_livro;
  this.nome_livro = nome_livro;
  this.nome_autor = nome_autor;
  this.nome_editora = nome_editora;
  this.lançamento = lançamento;
  this.quantidade_livro =quantidade_livro;
+
  }
  
  public ModelLivro (){
@@ -86,14 +88,14 @@ public class ModelLivro {
     /**
      * @return the lançamento
      */
-    public String getLançamento() {
+    public int getLançamento() {
         return lançamento;
     }
 
     /**
      * @param lançamento the lançamento to set
      */
-    public void setLançamento(String lançamento) {
+    public void setLançamento(int lançamento) {
         this.lançamento = lançamento;
     }
 
@@ -110,6 +112,11 @@ public class ModelLivro {
     public void setQuantidade_livro(int quantidade_livro) {
         this.quantidade_livro = quantidade_livro;
     }
+
+    /**
+     * @return the exemplar
+     */
+    
  
 }
 

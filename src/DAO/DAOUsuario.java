@@ -129,7 +129,7 @@ public class DAOUsuario extends ConexaoSQLite{
     }
    
     public ModelUsuario getUsuarioDAO(int pCodigoUsuario){
-        ModelUsuario modelUsuario = new ModelUsuario();
+    ModelUsuario modelUsuario = new ModelUsuario();
     conectar();
     ResultSet resultSet = null;
     PreparedStatement preparedStatement = null;
@@ -139,12 +139,14 @@ public class DAOUsuario extends ConexaoSQLite{
       System.out.println(sql);
         try {
             resultSet = preparedStatement.executeQuery();
+           
             
             while (resultSet.next()){
               modelUsuario = new ModelUsuario();
               modelUsuario.setId_usuario(resultSet.getInt(1));
               modelUsuario.setNome_usuario(resultSet.getString(2));
               modelUsuario.setSenha_usuario(resultSet.getString(3));
+              
                 
             }
             
@@ -197,6 +199,67 @@ public class DAOUsuario extends ConexaoSQLite{
     return true;
     
     }
+    
+   public boolean validarUsuario(ModelUsuario modelUsuario){
+     this.conectar();
+   ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
+       String sql = " SELECT  "
+               + "pk_id_usuario, "
+               + "nome_usuario, "
+               + "senha_usuario "
+               + " FROM tbl_Usuario "
+               + "WHERE nome_usuario = '"+modelUsuario.getNome_usuario()+"' AND "
+               + "senha_usuario = '" +modelUsuario.getSenha_usuario()+ "'";
+       
+       System.out.println(sql);
+       
+       preparedStatement = criarPreparedStatement(sql);
+       
+       
+       try {
+            resultSet = preparedStatement.executeQuery();
+           
+            
+            if (resultSet.next()){
+              return true;
+             
+              // verificação de registro do banco
+            
+            }else{
+            return false;
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+           
+            System.err.println(ex);
+        }
+       
+        finally {
+        if (preparedStatement !=null) {
+            
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                 Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+        }
+        
+        
+        
+        }
+   this.desconectar();
+   return true;
+   }
+    
+    
+    
+    
     
     
 }

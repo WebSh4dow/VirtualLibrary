@@ -44,6 +44,13 @@ public class ControllerUsuario {
     public ModelUsuario pesquisarUsuarioController(int pCodigo){
     return this.dAoUsuario.getUsuarioDAO(pCodigo);
     }
+
+   
+    public boolean validarUsuarioController(ModelUsuario modelUsuario) {
+        return this.dAoUsuario.validarUsuario(modelUsuario);
+    }
+
+    
     
 
     

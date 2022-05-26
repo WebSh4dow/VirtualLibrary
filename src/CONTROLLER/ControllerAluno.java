@@ -30,5 +30,13 @@ public class ControllerAluno {
     public boolean  deletarAlunoController(int codigo) {
         return this.dAOAluno.deletarAlunoDAO(codigo);
     }
+
+    public ModelAluno alterarAlunoController(int codigo) {
+        return this.dAOAluno.getALunoDAO(codigo);
+    }
+
+    public boolean atualizarAlunoController(ModelAluno modelAluno) {
+        return this.dAOAluno.atualizarAlunoDAO(modelAluno);
+    }
   
 }
