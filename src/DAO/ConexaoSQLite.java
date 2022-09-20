@@ -23,12 +23,19 @@ public class ConexaoSQLite {
      * Conecta a um banco de dados (cria o banco se ele não existir)
      *
      * @return
+     * @throws ClassNotFoundException 
      */
-    public boolean conectar() {
+    public boolean conectar()  {
 
         try {
+        	try {
+				Class.forName("org.sqlite.JDBC");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             String url = "jdbc:sqlite:db/dblocadora";
-
+            	
             this.conexao = DriverManager.getConnection(url);
             System.out.println("Conectado");
 

@@ -24,7 +24,7 @@ public class DAOAluno extends ConexaoSQLite {
    
     //conexao para salvar o aluno
     
-    public boolean SalvarAlunoDAO(ModelAluno pModelAluno) {
+    public boolean SalvarAlunoDAO(ModelAluno pModelAluno)  {
         conectar();
         String sql ="INSERT INTO tbl_Aluno (nome_aluno,cidade_aluno,email_aluno,endereço_aluno,fk_id_aluno) VALUES (?,?,?,?,?)";
         
@@ -88,7 +88,8 @@ public class DAOAluno extends ConexaoSQLite {
     
     // excluir o Aluno
     
-    public boolean deletarAlunoDAO(int pCodigo){
+    @SuppressWarnings("finally")
+	public boolean deletarAlunoDAO(int pCodigo){
         this.conectar();
         PreparedStatement preparedStatement;
         String sql = "DELETE FROM tbl_Aluno WHERE pk_id_aluno= '"+pCodigo+"'";
@@ -107,7 +108,7 @@ public class DAOAluno extends ConexaoSQLite {
              try {
                  preparedStatement.close();
                  
-             } catch (SQLException ex) {
+             } catch (final SQLException ex) {
                  ex.printStackTrace();
                  Logger.getLogger(DAOAluno.class.getName()).log(Level.SEVERE, null, ex);
              }

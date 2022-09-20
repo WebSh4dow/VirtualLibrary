@@ -16,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewAluno extends javax.swing.JFrame {
 
-    ModelAluno modelAluno= new ModelAluno();
+    private static final long serialVersionUID = 1L;
+	ModelAluno modelAluno= new ModelAluno();
     ControllerAluno controllerAluno = new ControllerAluno();
     List <ModelAluno> listaAluno = new ArrayList <>();
     String cadAlt="cad";
@@ -377,7 +378,6 @@ public class ViewAluno extends javax.swing.JFrame {
             listaAluno.get(i).getCidade_aluno(),
             listaAluno.get(i).getEndereço_aluno()
             
-            
             });
             
         }
@@ -416,6 +416,7 @@ public class ViewAluno extends javax.swing.JFrame {
           int codigo = (int) JtableAluno.getValueAt(linha, 0);
           
           controllerAluno.alterarAlunoController(codigo);
+          
           jtfIDAlunos.setText(String.valueOf(modelAluno.getId_aluno()));
           JtfNome.setText(modelAluno.getNome_aluno());
           JtfCidade.setText(modelAluno.getCidade_aluno());
